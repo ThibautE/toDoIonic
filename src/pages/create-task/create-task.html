@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Créer une tâche</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <i>Veuillez saisir au moins un type, un titre et une date</i>
+	<ion-item>
+   <ion-label floating>Type de tâche</ion-label>
+   <ion-select [(ngModel)]="type">
+    <ion-option value="Anniversaire">Anniversaire</ion-option>
+    <ion-option value="Travail">Travail</ion-option>
+    <ion-option value="Personnel">Personnel</ion-option>
+    <ion-option value="Evenement">Evenement</ion-option>
+    <ion-option value="Sport">Sport</ion-option>
+    <ion-option value="Sport">Autre</ion-option>
+  </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label floating>Titre</ion-label>
+  <ion-input type="text" [(ngModel)]="titre" required></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label floating right>Message</ion-label>
+  <ion-textarea type="text" [(ngModel)]="contenu" required></ion-textarea>
+</ion-item>
+<ion-item>
+  <ion-label floating>Date</ion-label>
+  <ion-datetime [(ngModel)]="date" min="2018" max="2050" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" required></ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label floating>Heure</ion-label>
+  <ion-datetime [(ngModel)]="heure" displayFormat="HH:mm"></ion-datetime>
+</ion-item>
+<ion-item>
+  <ion-label>Activer les notifications pour cette tâche?</ion-label>
+  <ion-toggle [(ngModel)]="importantBool" [checked]="true"></ion-toggle>
+</ion-item>
+
+<button ion-button (click)="presentActionSheet()" full color="primary">Ajouter une photo</button>
+<button ion-button (click)="addPlaces()" full color="primary">Ajouter un lieu {{lieu}}</button>
+<ion-item *ngIf="lieu != null">
+  Lieu selectionné : {{lieu}}
+</ion-item>
+
+
+
+<p align="center"><img src="{{myphoto}}"></p>
+<div *ngIf="type && date && titre">
+<button id="valid" full ion-button color="secondary" (click)="saveTask()">Ajouter la tâche</button>
+</div>
+</ion-content>

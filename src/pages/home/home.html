@@ -1,0 +1,27 @@
+  <ion-header>
+    <ion-navbar>
+      <ion-title>Accueil</ion-title>
+      <button style="float:right; margin-right: 3%;" (click)="chooseOptions()"><ion-icon  name="options"></ion-icon></button> 
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding>
+    <button full ion-button color="secondary" icon-end (click)="createTask()">Créer une tâche <ion-icon name="add-circle"></ion-icon></button>
+
+    <ion-list>
+     <ion-item-sliding #item *ngFor="let task of tasks">
+      <ion-item>
+        <div id="textDate">{{task.date}}
+        </div>
+        <button id="btn" (click)="viewTask(task.id)"><h1>{{task.titre}}</h1></button>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteTask(task.id)">Supprimer</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-footer>
+    <button full ion-button (click)="afficher()">Afficher/Masquer les tâches passées de dâte</button>
+  </ion-footer>
+</ion-content>

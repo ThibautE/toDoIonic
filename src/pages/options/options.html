@@ -1,0 +1,46 @@
+<!--
+  Generated template for the OptionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>options</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-item>
+   <ion-label floating>Filtrer par :</ion-label>
+   <ion-select [(ngModel)]="filtre">
+    <ion-option value="type">Type</ion-option>
+    <ion-option value="date">Date</ion-option>
+    <ion-option value="titre">Titre</ion-option>
+  </ion-select>
+</ion-item>
+<ion-item *ngIf="filtre == 'type'">
+	<ion-label floating>Choisir le type</ion-label>
+   <ion-select [(ngModel)]="type">
+    <ion-option value="Anniversaire">Anniversaire</ion-option>
+    <ion-option value="Travail">Travail</ion-option>
+    <ion-option value="Personnel">Personnel</ion-option>
+    <ion-option value="Evenement">Evenement</ion-option>
+    <ion-option value="Sport">Sport</ion-option>
+  </ion-select>
+</ion-item>
+<ion-item *ngIf="filtre == 'date'">
+	<ion-label floating>Choisir la date</ion-label>
+  <ion-datetime [(ngModel)]="date" min="2018" max="2050" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY"></ion-datetime>
+</ion-item>
+<ion-item *ngIf="filtre == 'titre'">
+	<ion-label floating>Choisir un titre</ion-label>
+  <ion-input type="text" [(ngModel)]="titre" required></ion-input>
+</ion-item>
+  <button id="valid" full ion-button color="secondary" (click)="search()">Effectuer la recherche</button>
+
+
+</ion-content>

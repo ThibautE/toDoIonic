@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-list *ngFor="let t of task">
+        <h3>{{t.titre}}</h3>
+      </ion-list>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let t of task">
+    <ion-card>
+      <ion-card-content *ngIf="t.important==1">
+        Notification activée <ion-icon name="notifications"></ion-icon>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        Type de tâche : {{t.type}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+    	<ion-card-content>
+        {{t.date}}  à partir de {{t.heure}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+    	<ion-card-content *ngIf="t.contenu!=null">
+        <h3>{{t.titre}} :</h3> <br>{{t.contenu}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content *ngIf="t.lieu!=null">
+        {{t.lieu}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content *ngIf="t.photo!=null">
+        <img src="{{t.photo}}">
+      </ion-card-content>
+    </ion-card>
+    <ion-item *ngIf="t.type=='Sport'">
+      <button ion-button id="btn" (click)="startSport()">Démarrer une activité sportive</button>
+    </ion-item>
+      <button id="back" ion-button color="danger" (click)="delete()">Supprimer</button>
+
+  </ion-list>
+</ion-content>
