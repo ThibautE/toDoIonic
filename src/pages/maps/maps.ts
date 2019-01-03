@@ -2,7 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LoadingController, ModalController, NavParams, NavController } from 'ionic-angular';
 import { CreateTaskPage } from '../create-task/create-task';
-import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -73,37 +73,6 @@ export class MapsPage {
 			});
 	}
 
-	tryGeolocation(){
-		this.loading.present();
-	    this.clearMarkers();//remove previous markers
-
-	    this.geolocation.getCurrentPosition().then((resp) => {
-	    	this.lat = resp.coords.latitude;
-	    	this.lng = resp.coords.longitude;
-	    	this.loading.dismiss();
-
-	    }).catch((error) => {
-	    	this.place2 = 'erreur';
-	    	this.loading.dismiss();
-	    });
-
-	    this.reverseGeocoder(52.5072095, 13.1452818);
-	}
-
-	reverseGeocoder(lat : number, lng : number) : Promise<any>{
-   		return new Promise((resolve, reject) =>{
-      		this.nativeGeocoder.reverseGeocode(lat, lng)
-      			.then((result : NativeGeocoderReverseResult[]) =>{
-         			let str : string   = 'The reverseGeocode address is ${result.street} in ${result.countryCode}';
-         			console.log(str);
-         			resolve(str);
-      			})
-      			.catch((error: any) =>{
-         			reject(error);
-      			});
-   		});
-	}
-
 	selectPlace(item){
 		this.clearMarkers();
 		let placeSelected = item;
@@ -117,8 +86,6 @@ export class MapsPage {
 		    important: this.important,
 		    place: placeSelected
 		});
-
-
 	}
 
 	clearMarkers(){

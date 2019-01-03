@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Data } from '../providers/data/data';
 
 import { Pedometer } from '@ionic-native/pedometer';
+import { Stepcounter } from '@ionic-native/stepcounter';
 import { SQLite } from '@ionic-native/sqlite';
 import { Camera } from '@ionic-native/camera';
 //maps
@@ -63,7 +64,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     Geolocation,
     NativeGeocoder,
     Data,
-    Pedometer    
+    Pedometer,
+    Stepcounter 
   ]
 })
 export class AppModule {}

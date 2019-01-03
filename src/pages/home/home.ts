@@ -12,6 +12,7 @@ import { OptionsPage } from '../options/options';
 export class HomePage {
 
 	public tasks : any;
+  public tacheDate: string;
 
   filtre: any;
   type: any = '';
@@ -24,15 +25,19 @@ export class HomePage {
     this.type = this.params.get('type');
     this.date = this.params.get('date');
     this.titre = this.params.get('titre');
+    this.tacheDate = "Afficher toutes les tâches";
   }
 
   afficher(){
     if(this.disp == 0){
       this.loadAllTaskDisp();
       this.disp = 1;
+      this.tacheDate = "Masquer les anciennes tâches";
+
     }else{
       this.loadTask();
       this.disp = 0;
+      this.tacheDate = "Afficher toutes les tâches";
     }
 
   }

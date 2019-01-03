@@ -37,6 +37,7 @@ export class Data {
   CreateTask(type: string, titre: string, contenu: string, date: string, heure: string, photo: string, lieu: string, important: number){
     return new Promise ((resolve, reject) => {
       let sql = "INSERT INTO tache (type, titre, contenu, date, heure, photo, lieu, important) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      console.log('date ajoutée : ' + date);
       this.db.executeSql(sql, [type, titre, contenu, date, heure, photo, lieu, important]).then((data) =>{
         resolve(data);
       }, (error) => {
@@ -47,13 +48,13 @@ export class Data {
 
   GetAllTasks(){
     var today = new Date();
-    var d = today.getDate();
-    var m = today.getMonth()+1; 
+    var d = ("0" + today.getDate()).slice(-2);
+    var m = ("0" + (today.getMonth() + 1)).slice(-2);
     var y = today.getFullYear();
     var ymd = y+"-"+m+"-"+d;
-    console.log('date : '+y +'-'+m+"-"+d);
+    console.log('date : '+y+'-'+m+"-"+d);
     return new Promise ((resolve, reject) => {
-      this.db.executeSql('SELECT * FROM tache WHERE date>=? ORDER BY date', [ymd]).then((data) => {
+      this.db.executeSql('SELECT * FROM tache WHERE date>=? ORDER BY date DESC', [ymd]).then((data) => {
         let arrayTasks = [];
         if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {
