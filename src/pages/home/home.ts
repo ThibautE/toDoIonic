@@ -39,7 +39,6 @@ export class HomePage {
       this.disp = 0;
       this.tacheDate = "Afficher toutes les tâches";
     }
-
   }
 
   ionViewWillEnter() {
@@ -48,7 +47,7 @@ export class HomePage {
     var d = today.getDate();
     var m = today.getMonth()+1;
     var y = today.getFullYear();
-    console.log('date : '+y +'-'+m+"-"+d);
+    console.log('dateActu : '+y +'-'+m+"-"+d);
   }
 
   createTask(){
@@ -85,9 +84,7 @@ export class HomePage {
   deleteTask(id){
     this.database.deleteTask(id);
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
-
   }
-
  
   viewTask(idTask){
     this.navCtrl.push(TaskDetailPage, {

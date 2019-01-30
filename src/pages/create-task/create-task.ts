@@ -129,7 +129,7 @@ export class CreateTaskPage {
         this.navCtrl.push(HomePage, {});
 
       }, (error) => {
-        console.log(error);
+        console.log("erreur " + error);
       })
   }
 

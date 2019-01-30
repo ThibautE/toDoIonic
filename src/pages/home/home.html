@@ -11,17 +11,24 @@
     <ion-list>
      <ion-item-sliding #item *ngFor="let task of tasks">
       <ion-item>
-        <div id="textDate">{{task.date}}
-        </div>
-        <button id="btn" (click)="viewTask(task.id)"><h1>{{task.titre}}</h1></button>
-      </ion-item>
+        <img *ngIf="task.type == 'Sport'" class="logo_type" src="http://www.running-aventure.com/images/course-a-pied-logo_10.jpg">
+        <img *ngIf="task.type == 'Travail'" class="logo_type" src="https://www.horaire-bibliotheque.fr/img/icone-bibliotheque.png">
+        <img *ngIf="task.type == 'Personnel'" class="logo_type" src="https://pngimage.net/wp-content/uploads/2018/06/user-logo-png-4.png">
+        <img *ngIf="task.type == 'Evenement'" class="logo_type" src="https://image.freepik.com/icones-gratuites/simple-calendrier_318-9776.jpg">
+        <img *ngIf="task.type == 'Anniversaire'" class="logo_type" src="https://image.freepik.com/icones-gratuites/gateau-anniversaire_318-10161.jpg">
+        <img *ngIf="task.type == 'Autre'" class="logo_type" src="https://image.flaticon.com/icons/png/512/36/36601.png">
 
+        <button class="btn" (click)="viewTask(task.id)"><h1>{{task.titre}}</h1>
+          <img *ngIf="task.important == 1" class="logo_notif" src="https://image.freepik.com/icones-gratuites/petite-cloche_318-10933.jpg">
+        </button>
+      </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="deleteTask(task.id)">Supprimer</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <ion-footer>
+  
+</ion-content>
+<ion-footer>
     <button full ion-button (click)="afficher()">{{tacheDate}}</button>
   </ion-footer>
-</ion-content>

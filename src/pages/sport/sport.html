@@ -6,11 +6,13 @@
 
 </ion-header>
 
-
 <ion-content padding>
-
-	<footer>
-		<button class="round" ion-button round (click)="startSport()">{{steps}}</button>
-	</footer>
+  <p id="sportTitre">Nombre de pas : </p>
+  
+  <div id="sport">{{count}}</div>
 
 </ion-content>
+
+<ion-footer>
+	<button full ion-button (click)="startSport()">{{steps}}</button>
+</ion-footer>

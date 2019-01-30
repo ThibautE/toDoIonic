@@ -1,11 +1,21 @@
 page-home {
 
-h1{
-	margin-left: 0;
-}
+	h1{
+		margin-left: 0;
+	}
 
-#textDate{
-	display: inline-block;
-	font-size: 0.75em;
-}
+	#textDate{
+		display: inline-block;
+		font-size: 0.75em;
+	}
+
+	.logo_type{
+		margin: auto;
+		width: 30px;
+	}
+
+	.logo_notif{
+		margin: auto;
+		width: 20px;
+	}
 }

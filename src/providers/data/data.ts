@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Platform } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
@@ -10,7 +11,7 @@ export class Data {
   private db: SQLiteObject;
   params: any;
 
-  constructor(public http: Http, public sqlite: SQLite) {
+  constructor(public http: Http, public sqlite: SQLite, public platform: Platform) {
     this.createDatabaseFile();
   }
 
@@ -42,6 +43,18 @@ export class Data {
         resolve(data);
       }, (error) => {
         reject(error);
+      });
+    });
+  }
+
+  UpdateTask(type: string, titre: string, contenu: string, date: string, heure: string, photo: string, lieu: string, important: number, id: number){
+    return new Promise ((resolve, reject) => {
+      let sql = "UPDATE tache SET type = '"+ type + "', titre = '" + titre + "', contenu = '" + contenu + "', date = '" + date + "', heure = '" + heure + "', photo = '" + photo + "', lieu = '" + lieu + "', important = " + important + " WHERE id = " + id;
+      console.log('date ajoutée : ' + date);
+      this.db.executeSql(sql).then((data) =>{
+        resolve("tache res" + data);
+      }, (error) => {
+        reject("tache rej" + error);
       });
     });
   }
@@ -80,7 +93,7 @@ export class Data {
 
   GetAllTasksDisp(){
     return new Promise ((resolve, reject) => {
-      this.db.executeSql('SELECT * FROM tache ORDER BY date', []).then((data) => {
+      this.db.executeSql('SELECT * FROM tache ORDER BY date DESC', []).then((data) => {
         let arrayTasks = [];
         if (data.rows.length > 0) {
           for (var i = 0; i < data.rows.length; i++) {
@@ -132,15 +145,15 @@ export class Data {
       return new Promise ((resolve, reject) => {
         let req = '';
         if(type != null && titre == null && date == null){
-          req = 'SELECT * FROM tache WHERE type=? ORDER BY date';
+          req = 'SELECT * FROM tache WHERE type=? ORDER BY date DESC';
           this.params = type;
         }
         if (date != null && type == null && titre == null){
-          req = 'SELECT * FROM tache WHERE date=? ORDER BY date';
+          req = 'SELECT * FROM tache WHERE date=? ORDER BY date DESC';
           this.params = date;
         }
         if (titre != null && date == null && type == null){
-          req = 'SELECT * FROM tache WHERE titre=? ORDER BY date';
+          req = 'SELECT * FROM tache WHERE titre=? ORDER BY date DESC';
           this.params = titre;
         }
         this.db.executeSql(req, [this.params]).then((data) => {

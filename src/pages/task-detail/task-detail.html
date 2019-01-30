@@ -8,7 +8,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngFor="let t of task">
+  <ion-list class="listTache" *ngFor="let t of task">
     <ion-card>
       <ion-card-content *ngIf="t.important==1">
         Notification activée <ion-icon name="notifications"></ion-icon>
@@ -26,7 +26,7 @@
     </ion-card>
     <ion-card>
     	<ion-card-content *ngIf="t.contenu!=null">
-        <h3>{{t.titre}} :</h3> <br>{{t.contenu}}
+        <h2>{{t.titre}} :</h2> <p>{{t.contenu}}</p>
       </ion-card-content>
     </ion-card>
     <ion-card>
@@ -42,7 +42,8 @@
     <ion-item *ngIf="t.type=='Sport'">
       <button ion-button id="btn" (click)="startSport()">Démarrer une activité sportive</button>
     </ion-item>
-      <button id="back" ion-button color="danger" (click)="delete()">Supprimer</button>
+    <button id="back" ion-button color="primary" (click)="modifyTask()">Modifier</button>
+    <button id="back" ion-button color="danger" (click)="delete()">Supprimer</button>
 
   </ion-list>
 </ion-content>

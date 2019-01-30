@@ -13,6 +13,7 @@ import { TaskDetailPage } from '../pages/task-detail/task-detail';
 import { MapsPage } from '../pages/maps/maps';
 import { SportPage } from '../pages/sport/sport';
 import { OptionsPage } from '../pages/options/options';
+import { ModifyTaskPage } from '../pages/modify-task/modify-task';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +36,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     TaskDetailPage,
     MapsPage,
     SportPage,
-    OptionsPage
+    OptionsPage,
+    ModifyTaskPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     TaskDetailPage,
     MapsPage,
     SportPage,
-    OptionsPage
+    OptionsPage,
+    ModifyTaskPage
   ],
   providers: [
     StatusBar,

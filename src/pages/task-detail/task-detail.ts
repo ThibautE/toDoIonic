@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavParams, NavController } from 'ionic-angular';
 import { Data } from '../../providers/data/data';
 import { SportPage } from '../sport/sport';
+import { ModifyTaskPage } from '../modify-task/modify-task';
 
 @Component({
   selector: 'page-task-detail',
@@ -24,7 +25,6 @@ export class TaskDetailPage {
 ionViewWillEnter() {
   this.id = this.navParams.get('idTask'); 
   this.getTask();
-
 }
 
 delete(){
@@ -44,6 +44,20 @@ getTask(){
 
 startSport(){
   this.navCtrl.push(SportPage, {
+  });
+}
+
+modifyTask(){
+  this.navCtrl.push(ModifyTaskPage, {
+    'idTask': this.id,
+    'typeTask': this.task[0].type,
+    'titreTask': this.task[0].titre,
+    'contenuTask': this.task[0].contenu,
+    'dateTask': this.task[0].date,
+    'heureTask': this.task[0].heure,
+    'photoTask': this.task[0].photo,
+    'lieuTask': this.task[0].lieu,
+    'importantTask': this.task[0].important
   });
 }
 
